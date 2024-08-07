@@ -25,6 +25,8 @@
     neovim
     neofetch
     git
+    _1password
+    _1password-gui
     teams-for-linux
     fzf
     btop
@@ -72,6 +74,9 @@
       la = "eza -la --icons";
       tree = "eza --tree --icons";
     };
+    initExtra = ''
+      export SSH_AUTH_SOCK=${config.home.homeDirectory}/.1password/agent.sock
+    '';
   };
 
   # Alacritty settings
@@ -120,6 +125,7 @@
   home.sessionVariables = {
     QT_PLUGIN_PATH = "${pkgs.qt5.qtbase}/${pkgs.qt5.qtbase.qtPluginPrefix}";
     LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib:$LD_LIBRARY_PATH";
+    SSH_AUTH_SOCK = "${config.home.homeDirectory}/.1password/agent.sock";
     #SHELL = "${pkgs.zsh}/bin/zsh";
     # EDITOR = "emacs";
   };
