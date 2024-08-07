@@ -1,0 +1,26 @@
+{ config, lib, pkgs, ... }:
+
+with lib;
+
+let
+  cfg = config.programs.packettracer;
+in {
+  options.programs.packettracer = {
+    enable = mkEnableOption "Cisco Packet Tracer";
+  };
+
+  config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      ciscoPacketTracer8
+      qt5.qtbase
+      qt5.qtscript
+      qt5.qtwebsockets
+    ];
+
+    environment.sessionVariables = {
+      QT_PLUGIN_PATH = "${pkgs.qt5.qtbase}/${pkgs.qt5.qtbase.qtPluginPrefix}";
+      LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib:$LD_LIBRARY_PATH";
+    };
+  };
+}
+
