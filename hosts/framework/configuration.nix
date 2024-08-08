@@ -133,6 +133,8 @@
     wget
     alacritty    
     nh
+    nix-output-monitor
+    nvd
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
