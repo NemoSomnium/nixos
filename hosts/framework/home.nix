@@ -41,6 +41,7 @@
     tldr
     eza
     wireshark-qt
+    culmus # Hebrew fonts
     (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.

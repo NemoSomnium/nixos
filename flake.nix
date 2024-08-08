@@ -20,7 +20,6 @@
 	./modules/vmware/vmware.nix
 	./modules/packettracer/packettracer.nix
 	./modules/gnome-extensions/gnome-extensions.nix
-	./modules/onlyoffice/onlyoffice.nix
 	inputs.nixos-hardware.nixosModules.framework-13-7040-amd
         inputs.home-manager.nixosModules.home-manager
         {
