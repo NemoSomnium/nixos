@@ -127,6 +127,7 @@
     LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib:$LD_LIBRARY_PATH";
     SSH_AUTH_SOCK = "${config.home.homeDirectory}/.1password/agent.sock";
     FLAKE = "/home/noams/nixos";
+    #MANPAGER = "sh -c 'col -bx | bat -l man -p'"; # Set bat as default MANPAGER
     #SHELL = "${pkgs.zsh}/bin/zsh";
     # EDITOR = "emacs";
   };
