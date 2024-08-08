@@ -33,7 +33,7 @@
     lan-mouse
     putty
     zoxide
-    onlyoffice-bin
+    libreoffice-fresh
     obsidian
     vmware-workstation
     alacritty-theme
