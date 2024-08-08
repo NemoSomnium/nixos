@@ -13,10 +13,10 @@
   };
 
   outputs = { self, nixpkgs, home-manager, nixos-hardware, ... }@inputs: {
-    nixosConfigurations.default = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.framework = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
-        ./hosts/default/configuration.nix
+        ./hosts/framework/configuration.nix
 	./modules/vmware/vmware.nix
 	./modules/packettracer/packettracer.nix
 	./modules/gnome-extensions/gnome-extensions.nix

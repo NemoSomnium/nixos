@@ -126,6 +126,7 @@
     QT_PLUGIN_PATH = "${pkgs.qt5.qtbase}/${pkgs.qt5.qtbase.qtPluginPrefix}";
     LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib:$LD_LIBRARY_PATH";
     SSH_AUTH_SOCK = "${config.home.homeDirectory}/.1password/agent.sock";
+    FLAKE = "/home/noams/nixos";
     #SHELL = "${pkgs.zsh}/bin/zsh";
     # EDITOR = "emacs";
   };
