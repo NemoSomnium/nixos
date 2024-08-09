@@ -108,6 +108,9 @@
   
   # Enabling ZSH
   programs.zsh.enable = true;
+
+  # Enable stylix
+  stylix.enable = true;
   
   home-manager = {
     # also pass inputs to home-manager modules

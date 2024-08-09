@@ -8,6 +8,8 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    stylix.url = "github:danth/stylix";
     
     nixos-hardware.url = "github:NixOS/nixos-hardware";
   };
@@ -20,6 +22,8 @@
 	./modules/vmware/vmware.nix
 	./modules/packettracer/packettracer.nix
 	./modules/gnome-extensions/gnome-extensions.nix
+	./modules/stylix/stylix.nix
+	inputs.stylix.nixosModules.stylix
 	inputs.nixos-hardware.nixosModules.framework-13-7040-amd
         inputs.home-manager.nixosModules.home-manager
         {
