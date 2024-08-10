@@ -77,6 +77,10 @@
       ll = "eza -l --icons";
       la = "eza -la --icons";
       tree = "eza --tree --icons";
+      nvim = "lvim";
+      vim = "lvim";
+      vi = "lvim";
+      lv = "lvim";
     };
     initExtra = ''
       export SSH_AUTH_SOCK=${config.home.homeDirectory}/.1password/agent.sock
