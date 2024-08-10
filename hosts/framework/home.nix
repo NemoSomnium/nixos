@@ -23,6 +23,7 @@
     zsh
     oh-my-zsh
     neovim
+    wl-clipboard
     neofetch
     git
     _1password
@@ -89,6 +90,14 @@
       ];
       # Other alacritty settings go here
     };
+  };
+
+  # Neovim settings
+  programs.neovim = {
+   enable = true;
+   viAlias = true;
+   vimAlias = true;
+   defaultEditor = true;
   };
 
     

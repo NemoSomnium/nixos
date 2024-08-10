@@ -12,6 +12,8 @@
     stylix.url = "github:danth/stylix";
     
     nixos-hardware.url = "github:NixOS/nixos-hardware";
+
+    nixvim.url = "github:nix-community/nixvim";
   };
 
   outputs = { self, nixpkgs, home-manager, nixos-hardware, ... }@inputs: {
@@ -23,7 +25,9 @@
 	./modules/packettracer/packettracer.nix
 	./modules/gnome-extensions/gnome-extensions.nix
 	./modules/stylix/stylix.nix
+	./modules/nixvim/nixvim.nix
 	inputs.stylix.nixosModules.stylix
+	inputs.nixvim.nixosModules.nixvim
 	inputs.nixos-hardware.nixosModules.framework-13-7040-amd
         inputs.home-manager.nixosModules.home-manager
         {
