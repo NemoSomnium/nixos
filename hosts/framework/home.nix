@@ -22,8 +22,10 @@
   home.packages = with pkgs; [
     zsh
     oh-my-zsh
-    neovim
-    wl-clipboard
+    ripgrep # Necessary for nvim
+    wl-clipboard # Necessary for enabling nvim clipboard
+    lunarvim
+    python3
     neofetch
     git
     _1password
@@ -92,13 +94,6 @@
     };
   };
 
-  # Neovim settings
-  programs.neovim = {
-   enable = true;
-   viAlias = true;
-   vimAlias = true;
-   defaultEditor = true;
-  };
 
     
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
