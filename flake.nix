@@ -25,6 +25,7 @@
 	./modules/packettracer/packettracer.nix
 	./modules/gnome-extensions/gnome-extensions.nix
 	./modules/stylix/stylix.nix
+  ./modules/lvim/python.nix
 	inputs.stylix.nixosModules.stylix
 	inputs.nixvim.nixosModules.nixvim
 	inputs.nixos-hardware.nixosModules.framework-13-7040-amd
