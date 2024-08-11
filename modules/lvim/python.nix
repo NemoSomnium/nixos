@@ -3,22 +3,19 @@
 {
   environment.systemPackages = with pkgs; [
     # Python Formatter
-    black
+    python310Packages.black
     
     # Python Linter
-    flake8
+    python310Packages.flake8
     
     # Python Debugging
-    python3Packages.debugpy
+    python310Packages.debugpy
     
     # Python Testing Framework
-    pytest
+    python310Packages.pytest
     
     # Neovim Support
-    python3Packages.neovim
+    python310Packages.pynvim
     
-    # Treesitter for syntax highlighting
-    nvim-treesitter
   ];
 }
-
