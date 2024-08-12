@@ -37,6 +37,7 @@
     putty
     zoxide
     libreoffice-fresh
+    discord
     obsidian
     vmware-workstation
     alacritty-theme
