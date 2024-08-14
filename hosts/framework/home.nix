@@ -76,9 +76,10 @@
       };
     shellAliases = {
       ls = "eza --icons";
-      ll = "eza -l --icons";
-      la = "eza -la --icons";
-      tree = "eza --tree --icons";
+      ll = "eza -lh --icons";
+      la = "eza -lah --icons";
+      tree = "eza --header --tree --icons";
+      gittree = "eza --long --header --icons --git --tree";
       nvim = "lvim";
       vim = "lvim";
       vi = "lvim";
