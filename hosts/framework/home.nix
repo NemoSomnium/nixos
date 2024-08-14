@@ -28,6 +28,7 @@
     python3
     neofetch
     git
+    lazygit
     _1password
     _1password-gui
     teams-for-linux
