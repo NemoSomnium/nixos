@@ -80,6 +80,7 @@
       la = "eza -lah --icons";
       tree = "eza --header --tree --icons";
       gittree = "eza --long --header --icons --git --tree";
+      lg = "lazygit";
       nvim = "lvim";
       vim = "lvim";
       vi = "lvim";
