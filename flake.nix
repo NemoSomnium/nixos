@@ -21,11 +21,12 @@
       specialArgs = { inherit inputs; };
       modules = [
         ./hosts/framework/configuration.nix
-	./modules/vmware/vmware.nix
+	# ./modules/vmware/vmware.nix
 	./modules/packettracer/packettracer.nix
 	./modules/gnome-extensions/gnome-extensions.nix
 	./modules/stylix/stylix.nix
   ./modules/lvim/python.nix
+  # ./modules/vmware/gdbm-overlay.nix
 	inputs.stylix.nixosModules.stylix
 	inputs.nixvim.nixosModules.nixvim
 	inputs.nixos-hardware.nixosModules.framework-13-7040-amd

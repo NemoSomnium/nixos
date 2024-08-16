@@ -41,7 +41,7 @@
     libreoffice-fresh
     discord
     obsidian
-    vmware-workstation
+    # vmware-workstation
     alacritty-theme
     warp-terminal
     tldr
