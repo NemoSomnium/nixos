@@ -32,6 +32,7 @@
     _1password
     _1password-gui
     teams-for-linux
+    portal
     fzf
     btop
     lan-mouse
