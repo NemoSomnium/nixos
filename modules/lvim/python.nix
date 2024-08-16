@@ -3,7 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     # Python Formatter
-    python310Packages.black
+    black
     
     # Python Linter
     python310Packages.flake8
