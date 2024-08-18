@@ -34,6 +34,7 @@
     teams-for-linux
     portal
     fzf
+    bat
     btop
     lan-mouse
     putty
@@ -86,6 +87,7 @@
       vim = "lvim";
       vi = "lvim";
       lv = "lvim";
+      inv = "lvim $(fzf -m --preview='bat --color=always {}')";
     };
     initExtra = ''
       export SSH_AUTH_SOCK=${config.home.homeDirectory}/.1password/agent.sock
