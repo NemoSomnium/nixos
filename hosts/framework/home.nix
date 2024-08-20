@@ -34,6 +34,7 @@
     teams-for-linux
     portal
     fzf
+    thefuck
     bat
     btop
     lan-mouse
@@ -73,7 +74,7 @@
     enable = true;
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "python" "man" "zoxide" "zsh-interactive-cd" "fzf" ];
+      plugins = [ "git" "python" "man" "zoxide" "zsh-interactive-cd" "fzf" "thefuck" ];
       theme = "candy-kingdom"; 
       };
     shellAliases = {
@@ -93,6 +94,7 @@
     initExtra = ''
       export SSH_AUTH_SOCK=${config.home.homeDirectory}/.1password/agent.sock
       export PATH="$HOME/scripts:$PATH"
+      eval $(thefuck --alias)
     '';
   };
 
