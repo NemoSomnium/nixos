@@ -25,6 +25,8 @@
     ripgrep # Necessary for nvim
     wl-clipboard # Necessary for enabling nvim clipboard
     lunarvim
+    sqlite # Necessary for emacs org-mode roam
+    libvterm # Dependency for vterm
     python3
     neofetch
     git
@@ -50,7 +52,7 @@
     eza
     wireshark-qt
     culmus # Hebrew fonts
-    (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
+    (nerdfonts.override { fonts = [ "CascadiaCode" "JetBrainsMono" ]; })
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -94,6 +96,7 @@
     initExtra = ''
       export SSH_AUTH_SOCK=${config.home.homeDirectory}/.1password/agent.sock
       export PATH="$HOME/scripts:$PATH"
+      export PATH="$HOME/.emacs.d/bin:$PATH"
       eval $(thefuck --alias)
     '';
   };
@@ -107,6 +110,14 @@
       ];
       # Other alacritty settings go here
     };
+  };
+
+  # Emacs settings
+  programs.emacs = {
+    enable = true;
+    extraPackages = epkgs: with epkgs; [
+      vterm
+    ];
   };
 
 
