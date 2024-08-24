@@ -89,6 +89,11 @@
     #media-session.enable = true;
   };
 
+  # Emacs daemon service
+  services.emacs = {
+  enable = true;
+  };
+
   # Enable unsupported pkgs
   #nixpkgs.config.allowUnsupportedSystem = true;
 

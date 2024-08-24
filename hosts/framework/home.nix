@@ -28,6 +28,8 @@
     sqlite # Necessary for emacs org-mode roam
     libvterm # Dependency for vterm
     python3
+    pyright
+    jetbrains.pycharm-community
     neofetch
     git
     lazygit
@@ -46,6 +48,7 @@
     vesktop
     obsidian
     # vmware-workstation
+    bottles
     alacritty-theme
     warp-terminal
     tldr
