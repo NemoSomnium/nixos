@@ -28,6 +28,7 @@
     sqlite # Necessary for emacs org-mode roam
     libvterm # Dependency for vterm
     python3
+    python312Packages.pyasyncore # Possible dependency for playonlinux
     pyright
     jetbrains.pycharm-community
     neofetch
@@ -53,6 +54,7 @@
     alacritty-theme
     warp-terminal
     tldr
+    unzip
     eza
     wireshark-qt
     culmus # Hebrew fonts
