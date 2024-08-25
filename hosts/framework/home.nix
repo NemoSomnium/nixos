@@ -49,6 +49,7 @@
     obsidian
     # vmware-workstation
     bottles
+    playonlinux
     alacritty-theme
     warp-terminal
     tldr
