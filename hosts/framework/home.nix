@@ -121,6 +121,9 @@
   # Emacs settings
   programs.emacs = {
     enable = true;
+    extraConfig = ''
+      (add-to-list 'default-frame-alist '(fullscreen . maximized))
+    '';
     extraPackages = epkgs: with epkgs; [
       vterm
     ];
