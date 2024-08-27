@@ -26,7 +26,6 @@
 	      ./modules/gnome-extensions/gnome-extensions.nix
 	      ./modules/stylix/stylix.nix
         ./modules/lvim/python.nix
-        # ./modules/fzf-kill/fzf-kill.nix
 	      inputs.stylix.nixosModules.stylix
 	      inputs.nixvim.nixosModules.nixvim
       	inputs.nixos-hardware.nixosModules.framework-13-7040-amd
