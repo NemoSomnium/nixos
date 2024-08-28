@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-master.url = "github:nixos/nixpkgs";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -16,12 +17,12 @@
     nixvim.url = "github:nix-community/nixvim";
   };
 
-  outputs = { self, nixpkgs, home-manager, nixos-hardware, ... }@inputs: {
+  outputs = { self, nixpkgs, nixpkgs-master, home-manager, nixos-hardware, ... }@inputs: {
     nixosConfigurations.framework = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
         ./hosts/framework/configuration.nix
-	      # ./modules/vmware/vmware.nix
+	      ./modules/vmware/vmware.nix
 	      ./modules/packettracer/packettracer.nix
 	      ./modules/gnome-extensions/gnome-extensions.nix
 	      ./modules/stylix/stylix.nix
@@ -35,6 +36,16 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = { inherit inputs; };
+        }
+        {
+          nixpkgs.overlays = [
+            (final: prev: {
+              master = import nixpkgs-master {
+                system = prev.system;
+                config = prev.config;
+              };
+            })
+          ];
         }
       ];
     };
