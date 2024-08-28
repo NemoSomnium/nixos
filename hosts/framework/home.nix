@@ -48,7 +48,7 @@
     libreoffice-fresh
     vesktop
     obsidian
-    # vmware-workstation
+    master.vmware-workstation
     bottles
     playonlinux
     alacritty-theme
