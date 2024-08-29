@@ -36,7 +36,7 @@
     lazygit
     _1password
     _1password-gui
-    teams-for-linux
+    master.teams-for-linux
     portal
     fzf
     thefuck
