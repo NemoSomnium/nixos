@@ -145,6 +145,11 @@
     nvd
   ];
 
+  
+  nixpkgs.config.permittedInsecurePackages = [
+    # "electron-29.4.6"
+  ];
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
