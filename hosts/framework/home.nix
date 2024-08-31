@@ -27,6 +27,7 @@
     lunarvim
     sqlite # Necessary for emacs org-mode roam
     libvterm # Dependency for vterm
+    ispell
     python3
     python312Packages.pyasyncore # Possible dependency for playonlinux
     pyright
