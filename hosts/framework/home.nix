@@ -37,7 +37,7 @@
     lazygit
     _1password
     _1password-gui
-    master.teams-for-linux
+    teams-for-linux
     portal
     fzf
     comma
