@@ -10,6 +10,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # hyprland.url = "github:hyprwm/Hyprland";
+
     stylix.url = "github:danth/stylix";
     
     nixos-hardware.url = "github:NixOS/nixos-hardware";

@@ -131,6 +131,19 @@
   # Enable PacketTracer
   programs.packettracer.enable = true;
 
+  # Enable Hyprland
+
+  nix.settings = {
+    substituters = ["https://hyprland.cachix.org"];
+    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+  };
+
+  # programs.hyprland = {
+  #   enable = true;
+  #   # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+  #   # portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+  # };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -140,6 +153,8 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     alacritty    
+    kitty
+    cachix
     nh
     nix-output-monitor
     nvd
