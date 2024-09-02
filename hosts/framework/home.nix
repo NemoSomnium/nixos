@@ -40,6 +40,7 @@
     master.teams-for-linux
     portal
     fzf
+    comma
     thefuck
     bat
     btop
