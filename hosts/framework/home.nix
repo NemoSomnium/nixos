@@ -1,4 +1,14 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
+let
+  nixpkgs-master = inputs.nixpkgs-master.legacyPackages.${pkgs.system};
+  nixpkgs-unfree-master = inputs.nixpkgs-unfree-master.legacyPackages.${pkgs.system};
+  packagesFromMaster = with nixpkgs-master; [
+  # Packages from master branch go here
+  ];
+  packagesFromUnfreeMaster = with nixpkgs-unfree-master; [
+  # Packages from unfree master branch go here
+  ];
+in
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -32,6 +42,8 @@
     python312Packages.pyasyncore # Possible dependency for playonlinux
     pyright
     jetbrains.pycharm-community
+    vscode
+    ollama-rocm
     neofetch
     git
     lazygit
@@ -77,7 +89,7 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-  ];
+  ] ++ packagesFromMaster ++ packagesFromUnfreeMaster;
   
   # zsh settings
   programs.zsh = {

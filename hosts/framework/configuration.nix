@@ -3,6 +3,16 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, inputs, ... }:
+let
+  nixpkgs-master = inputs.nixpkgs-master.legacyPackages.${pkgs.system};
+  nixpkgs-unfree-master = inputs.nixpkgs-unfree-master.legacyPackages.${pkgs.system};
+  packagesFromMaster = with nixpkgs-master; [
+  # Packages from master branch go here
+  ];
+  packagesFromUnfreeMaster = with nixpkgs-unfree-master; [
+  # Packages from unfree master branch go here
+  ];
+in
 
 {
   imports =
@@ -140,8 +150,8 @@
 
   # programs.hyprland = {
   #   enable = true;
-  #   # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-  #   # portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+  # # #   package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+  # # #   portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   # };
 
   # Allow unfree packages
@@ -158,7 +168,7 @@
     nh
     nix-output-monitor
     nvd
-  ];
+  ] ++ packagesFromMaster ++ packagesFromUnfreeMaster;
 
   
   nixpkgs.config.permittedInsecurePackages = [
