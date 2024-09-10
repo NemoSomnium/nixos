@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, lib, ... }:
 let
   nixpkgs-master = inputs.nixpkgs-master.legacyPackages.${pkgs.system};
   nixpkgs-unfree-master = inputs.nixpkgs-unfree-master.legacyPackages.${pkgs.system};
@@ -44,15 +44,15 @@ in
   i18n.defaultLocale = "en_IL";
 
   i18n.extraLocaleSettings = {
-    LC_ADDRESS = "he_IL.UTF-8";
-    LC_IDENTIFICATION = "he_IL.UTF-8";
-    LC_MEASUREMENT = "he_IL.UTF-8";
-    LC_MONETARY = "he_IL.UTF-8";
-    LC_NAME = "he_IL.UTF-8";
-    LC_NUMERIC = "he_IL.UTF-8";
-    LC_PAPER = "he_IL.UTF-8";
-    LC_TELEPHONE = "he_IL.UTF-8";
-    LC_TIME = "he_IL.UTF-8";
+    LC_ADDRESS = "en_IL";
+    LC_IDENTIFICATION = "en_IL";
+    LC_MEASUREMENT = "en_IL";
+    LC_MONETARY = "en_IL";
+    LC_NAME = "en_IL";
+    LC_NUMERIC = "en_IL";
+    LC_PAPER = "en_IL";
+    LC_TELEPHONE = "en_IL";
+    LC_TIME = "en_IL";
   };
 
   # Enable the X11 windowing system.
@@ -148,11 +148,22 @@ in
     trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
   };
 
-  # programs.hyprland = {
-  #   enable = true;
-  # # #   package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-  # # #   portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-  # };
+  programs.hyprland = {
+    enable = true;
+    package = inputs.nixpkgs-master.legacyPackages.${pkgs.system}.hyprland;
+    portalPackage = inputs.nixpkgs-master.legacyPackages.${pkgs.system}.xdg-desktop-portal-hyprland;
+    xwayland.enable = true;
+  };
+
+  xdg.portal = {
+    enable = true;
+    wlr.enable = false;
+    xdgOpenUsePortal = false;
+    # extraPortals = [
+    #   inputs.nixpkgs-master.legacyPackages."${pkgs.system}".xdg-desktop-portal-hyprland
+    #   inputs.nixpkgs-master.legacyPackages."${pkgs.system}".xdg-desktop-portal-gtk
+    # ];
+  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -168,9 +179,105 @@ in
     nh
     nix-output-monitor
     nvd
+    # Hyprland pkgs
+    hyprpaper
+    qt5.qtwayland
+    qt6.qtwayland
+    libsForQt5.qt5.qtquickcontrols2
+    libsForQt5.qt5.qtgraphicaleffects
+    libsForQt5.qt5.qtsvg
+    xfce.thunar
+    zip
+    xdg-desktop-portal-gtk
+    xdg-desktop-portal-wlr
+    # swayidle
+    adwaita-icon-theme
+    glib
+    gsettings-desktop-schemas
+    nwg-look
+    # swaylock-effects
+    wlogout
+    wl-clipboard
+    wofi
+    waybar
+    # mako
+    dunst
+    libnotify
+    swww
+    rofi-wayland
+    networkmanagerapplet
+    pamixer
+    papirus-folders
+    papirus-icon-theme
+    hyprshot
+    catppuccin-gtk
+    wlr-randr
+    acpid
+    killall
+    hyprlock
+    hypridle
   ] ++ packagesFromMaster ++ packagesFromUnfreeMaster;
 
-  
+  # Extra hyprland settings
+  services.acpid = {
+    enable = true;
+
+    lidEventCommands = ''
+      export WAYLAND_DISPLAY=wayland-1  # Correct display based on your system
+      export XDG_RUNTIME_DIR=/run/user/1000  # Replace with the actual value if different
+
+      lid_state=$(/run/current-system/sw/bin/cat /proc/acpi/button/lid/LID0/state | /run/current-system/sw/bin/awk '{print $2}')
+      echo $(date) - Raw lid state: $lid_state >> /tmp/lid-state.log
+
+      if [[ "$lid_state" == "closed" ]]; then
+          /run/current-system/sw/bin/wlr-randr --output eDP-1 --off >> /tmp/lid-state.log 2>&1
+          echo $(date) - Lid closed, turning off screen >> /tmp/lid-state.log
+      elif [[ "$lid_state" == "open" ]]; then
+          /run/current-system/sw/bin/wlr-randr --output eDP-1 --on >> /tmp/lid-state.log 2>&1
+          echo $(date) - Lid opened, turning on screen >> /tmp/lid-state.log
+      else
+          echo $(date) - Lid state unknown: $lid_state >> /tmp/lid-state.log
+      fi
+    '';
+
+  #   # Commands to execute when the lid is closed or opened
+  #   lidEventCommands = ''
+  #     # Using absolute path for awk
+  #     lid_state=$(/run/current-system/sw/bin/cat /proc/acpi/button/lid/LID0/state | /run/current-system/sw/bin/awk '{print $2}')
+  #     echo $(date) - Raw lid state: $lid_state >> /tmp/lid-state.log
+
+  #     if [[ "$lid_state" == "closed" ]]; then
+  #         /run/current-system/sw/bin/wlr-randr --output eDP-1 --off
+  #         echo $(date) - Lid closed, turning off screen >> /tmp/lid-state.log
+  #     elif [[ "$lid_state" == "open" ]]; then
+  #         /run/current-system/sw/bin/wlr-randr --output eDP-1 --on
+  #         echo $(date) - Lid opened, turning on screen >> /tmp/lid-state.log
+  #     else
+  #         echo $(date) - Lid state unknown: $lid_state >> /tmp/lid-state.log
+  #     fi
+  #   '';
+  };
+  # Enable dconf and set up the user profile with font, icon theme, and GTK theme
+  programs.dconf = {
+    enable = true;
+    profiles = {
+      # Define a "user" profile for dconf
+      user = {
+        databases = [
+          {
+            # Define GNOME-specific settings
+            settings = {
+              "org/gnome/desktop/interface" = {
+                font-name = "JetBrainsMonoNL Nerd Font Regular 12";
+                gtk-theme = "Catppuccin-Mocha";
+                icon-theme = "Papirus-Dark";
+              };
+            };
+          }
+        ];
+      };
+    };
+  };
   nixpkgs.config.permittedInsecurePackages = [
     # "electron-29.4.6"
   ];

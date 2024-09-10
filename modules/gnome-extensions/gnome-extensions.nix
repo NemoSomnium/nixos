@@ -5,6 +5,7 @@
     #pano
     clipboard-indicator
     cronomix
+    paperwm
     # Add other extensions as needed
   ];
 
@@ -27,6 +28,7 @@
 	  "drive-menu@gnome-shell-extensions.gcampax.github.com"
 	  "places-menu@gnome-shell-extensions.gcampax.github.com"
 	  "system-monitor@gnome-shell-extensions.gcampax.github.com"
+    # "paperwm@paperwm.github.com"
 	  # Add more extension UUIDs as needed
         ];
       };

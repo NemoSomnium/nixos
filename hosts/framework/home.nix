@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, lib, ... }:
 let
   nixpkgs-master = inputs.nixpkgs-master.legacyPackages.${pkgs.system};
   nixpkgs-unfree-master = inputs.nixpkgs-unfree-master.legacyPackages.${pkgs.system};
@@ -38,9 +38,13 @@ in
     sqlite # Necessary for emacs org-mode roam
     libvterm # Dependency for vterm
     ispell
-    python3
+    # python3
     python312Packages.pyasyncore # Possible dependency for playonlinux
     pyright
+    (python3.withPackages (python-pkgs: [
+        python-pkgs.pip
+        python-pkgs.requests
+    ]))
     jetbrains.pycharm-community
     vscode
     ollama-rocm
@@ -73,6 +77,11 @@ in
     wireshark-qt
     culmus # Hebrew fonts
     (nerdfonts.override { fonts = [ "CascadiaCode" "JetBrainsMono" ]; })
+    # Hyprland packages
+    catppuccin-cursors.mochaBlue
+    catppuccin-gtk
+    font-awesome
+    numlockx
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -117,6 +126,7 @@ in
       export SSH_AUTH_SOCK=${config.home.homeDirectory}/.1password/agent.sock
       export PATH="$HOME/scripts:$PATH"
       export PATH="$HOME/.emacs.d/bin:$PATH"
+      export PATH="$HOME/irnm:$PATH"
       eval $(thefuck --alias)
       export MANPAGER="lvim -c 'set ft=man' -c 'Man!' -"
     '';
@@ -144,10 +154,30 @@ in
     ];
   };
 
+  # hyprland settings
+  # wayland.windowManager.hyprland = {
+  # # allow home-manager to configure hyprland
+  #   enable = true;
+  #   
+  #   plugins = [
+  #     inputs.hyprland-plugins.packages."${pkgs.system}".borders-plus-plus
+  #   ];
 
-    
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
+  #   settings = {
+
+  #     general = {
+  #     
+  #     };
+  #   };
+  # };
+  # home.udev = {
+  #   enable = true;
+  #   extraRules = ''
+  #   # Rule to run monitor script when DP-3 is connected
+  #   SUBSYSTEM=="drm", ACTION=="change", RUN+="/home/noams/scripts/display-management.sh"
+  #   '';
+  # };
+
   home.file = {
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
@@ -182,6 +212,7 @@ in
     LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib:$LD_LIBRARY_PATH";
     SSH_AUTH_SOCK = "${config.home.homeDirectory}/.1password/agent.sock";
     FLAKE = "/home/noams/nixos";
+    XNUMLOCK = "on";
     # MANPAGER = "lvim -c 'set ft=man' -c 'Man!' -"; # Set lvim as default MANPAGER
     #SHELL = "${pkgs.zsh}/bin/zsh";
     # EDITOR = "emacs";
