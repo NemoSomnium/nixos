@@ -105,7 +105,7 @@ in
   };
 
   # Enable unsupported pkgs
-  #nixpkgs.config.allowUnsupportedSystem = true;
+  nixpkgs.config.allowUnsupportedSystem = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;

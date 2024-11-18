@@ -78,7 +78,6 @@ in
     culmus # Hebrew fonts
     (nerdfonts.override { fonts = [ "CascadiaCode" "JetBrainsMono" ]; })
     # Hyprland packages
-    catppuccin-cursors.mochaBlue
     catppuccin-gtk
     font-awesome
     numlockx
@@ -211,7 +210,7 @@ in
     QT_PLUGIN_PATH = "${pkgs.qt5.qtbase}/${pkgs.qt5.qtbase.qtPluginPrefix}";
     LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib:$LD_LIBRARY_PATH";
     SSH_AUTH_SOCK = "${config.home.homeDirectory}/.1password/agent.sock";
-    FLAKE = "/home/noams/nixos";
+    FLAKE = "$HOME/nixos";
     XNUMLOCK = "on";
     # MANPAGER = "lvim -c 'set ft=man' -c 'Man!' -"; # Set lvim as default MANPAGER
     #SHELL = "${pkgs.zsh}/bin/zsh";

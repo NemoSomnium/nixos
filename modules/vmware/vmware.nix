@@ -5,6 +5,7 @@
   # Enable VMwarehost modules
   virtualisation.vmware.host.enable = true;
   # virtualisation.vmware.host.package = pkgs.master.vmware-workstation;
+  virtualisation.vmware.guest.enable = true;
 
   # Add necessary kernel modules
   boot.extraModulePackages = with config.boot.kernelPackages; [

@@ -8,7 +8,7 @@
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
   
   # Use a custom wallpaper
-  stylix.image = /home/noams/Pictures/wall.png;
+  stylix.image = ./wall.png;
   stylix.polarity = "dark";  # Force dark theme
 
   # Set JetBrains Mono Nerd Font as the default monospace font
